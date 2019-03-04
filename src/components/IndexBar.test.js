@@ -65,25 +65,6 @@ describe('IndexBar initialization', () => {
   });
 });
 
-describe('IndexBar title bar', () => {
-  // We need to 'mount' instead of 'shallow' to ensure child components are rendered and
-  // we can interact with the DOM. Use our mock callback to test it is invoked correctly.
-  let listBar;
-
-  beforeEach(() => {
-    listBar = mount(<IndexBar collection={collection} select={jest.fn} />);
-  });
-
-  test('Renders sorted section list', () => {
-    expect(listBar).toContainExactlyOneMatchingElement('div#section-list');
-
-    const sectionList = listBar.find('div#section-list li');
-    expect(sectionList.map(li => li.text())).toEqual(
-      Array.from(collection.keys()).sort()
-    );
-  });
-});
-
 describe('IndexBar actions', () => {
   let selectCallback;
   let listBar;
