@@ -61,7 +61,7 @@ describe('IndexBar Styled Components and PropTypes', () => {
 
 describe('IndexBar initialization', () => {
   test('Handles empty array without error', () => {
-    shallow(<IndexBar collection={[]} select={jest.fn} />);
+    shallow(<IndexBar collection={new Map()} select={jest.fn} />);
   });
 });
 
