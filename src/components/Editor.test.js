@@ -17,7 +17,11 @@ const findButton = (comp, labelRegEx) => {
     .filterWhere(n => labelRegEx.test(n.prop('value')));
   if (button.length === 0) {
     // If that didn't work, look for "<button> ..."
-    button = comp.find('button').filterWhere(n => labelRegEx.test(n.text()));
+    button = comp
+      .find('button')
+      .filterWhere(
+        n => labelRegEx.test(n.text()) || labelRegEx.test(n.prop('value'))
+      );
   }
   return button;
 };

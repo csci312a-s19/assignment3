@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 
 import App from './App';
 import IndexBar from './components/IndexBar';
@@ -14,16 +14,20 @@ const findButton = (comp, labelRegEx) => {
     .filterWhere(n => labelRegEx.test(n.prop('value')));
   if (button.length === 0) {
     // If that didn't work, look for "<button> ..."
-    button = comp.find('button').filterWhere(n => labelRegEx.test(n.text()));
+    button = comp
+      .find('button')
+      .filterWhere(
+        n => labelRegEx.test(n.text()) || labelRegEx.test(n.prop('value'))
+      );
   }
   return button;
 };
 
-describe('App shallow rendering tests', () => {
+describe('App rendering tests', () => {
   let app;
 
   beforeEach(() => {
-    app = shallow(<App />);
+    app = mount(<App />);
   });
 
   describe('App component initial content', () => {
